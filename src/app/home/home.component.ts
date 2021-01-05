@@ -75,14 +75,14 @@ export class HomeComponent implements OnInit {
   formChange(value){
  
     let jsonValue = this.editor.get() ;
-            
+    let arr = Object.keys(jsonValue).map((k) => jsonValue[k]);       
     this.validJson = true
 
     this.demoForm = this._formBuilder.group({
       demoArray: this._formBuilder.array([])
     });
     this.arrayItems = [];
-    jsonValue.map(field => {
+    arr.map(field => {
       this.arrayItems.push({ title: field.label,type: field.type ,options: field.options });
       this.demoArray.push(this._formBuilder.control(''));
     });
